@@ -55,223 +55,215 @@ p {
 <script>
         web3.eth.defaultAccount = web3.eth.accounts[0];
         var lib= web3.eth.contract([
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "name": "studentdetail",
-        "outputs": [
-          {
-            "name": "sname",
-            "type": "string"
-          },
-          {
-            "name": "bname",
-            "type": "string"
-          },
-          {
-            "name": "sbooks",
-            "type": "uint256"
-          },
-          {
-            "name": "fineamount",
-            "type": "uint256"
-          },
-          {
-            "name": "check",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "name": "bookdetail",
-        "outputs": [
-          {
-            "name": "bookname",
-            "type": "string"
-          },
-          {
-            "name": "bookAUname",
-            "type": "string"
-          },
-          {
-            "name": "available",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "StudentList",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256[]"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "isbn",
-            "type": "uint256"
-          },
-          {
-            "name": "sid",
-            "type": "uint256"
-          }
-        ],
-        "name": "Fineamount",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "BookList",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256[]"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "sid",
-            "type": "uint256"
-          },
-          {
-            "name": "isbn",
-            "type": "uint256"
-          },
-          {
-            "name": "gettime",
-            "type": "uint256"
-          }
-        ],
-        "name": "Getbooks",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "sid",
-            "type": "uint256"
-          },
-          {
-            "name": "isbn",
-            "type": "uint256"
-          },
-          {
-            "name": "book_returntime",
-            "type": "uint256"
-          }
-        ],
-        "name": "Returnbooks",
-        "outputs": [],
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "ISBnumber",
-            "type": "uint256"
-          },
-          {
-            "name": "_bname",
-            "type": "string"
-          },
-          {
-            "name": "_baname",
-            "type": "string"
-          },
-          {
-            "name": "_avail",
-            "type": "uint256"
-          }
-        ],
-        "name": "Setbooks",
-        "outputs": [],
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "sid",
-            "type": "uint256"
-          },
-          {
-            "name": "sn",
-            "type": "string"
-          }
-        ],
-        "name": "setstudentids",
-        "outputs": [],
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-      }
-    ]);
-	var mycont=lib.at('0xB399Ce9523C7D15304bA5f4728007eb802aD78f2');
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "isbn",
+				"type": "uint256"
+			},
+			{
+				"name": "sid",
+				"type": "uint256"
+			}
+		],
+		"name": "Fineamount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "sid",
+				"type": "uint256"
+			},
+			{
+				"name": "isbn",
+				"type": "uint256"
+			}
+		],
+		"name": "Returnbooks",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "ISBnumber",
+				"type": "uint256"
+			},
+			{
+				"name": "_bname",
+				"type": "string"
+			},
+			{
+				"name": "_baname",
+				"type": "string"
+			},
+			{
+				"name": "_avail",
+				"type": "uint256"
+			}
+		],
+		"name": "Setbooks",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "BookList",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "sid",
+				"type": "uint256"
+			},
+			{
+				"name": "sn",
+				"type": "string"
+			}
+		],
+		"name": "setstudentids",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "studentdetail",
+		"outputs": [
+			{
+				"name": "sname",
+				"type": "string"
+			},
+			{
+				"name": "bname",
+				"type": "string"
+			},
+			{
+				"name": "sbooks",
+				"type": "uint256"
+			},
+			{
+				"name": "fineamount",
+				"type": "uint256"
+			},
+			{
+				"name": "check",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "StudentList",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "sid",
+				"type": "uint256"
+			},
+			{
+				"name": "isbn",
+				"type": "uint256"
+			}
+		],
+		"name": "Getbooks",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "bookdetail",
+		"outputs": [
+			{
+				"name": "bookname",
+				"type": "string"
+			},
+			{
+				"name": "bookAUname",
+				"type": "string"
+			},
+			{
+				"name": "available",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	}
+]);
+	var mycont=lib.at('0x16d184d8cc553eaa76b59577369d08bcd77a9486');
 if(!web3.isConnected()) {
   
-        console.log("Ok");
+        console.log("Ok....");
         
 
       } else {
 
-        console.log("no");
+        console.log("web3 connected");
       }
 
       web3.version.getNetwork((err, netId) => {
@@ -304,7 +296,7 @@ var a=document.getElementById("i1").value;
 var b=document.getElementById("i2").value;
 var c=document.getElementById("i3").value;
 var d=document.getElementById("i4").value;
-var p1=mycont.Setbooks(a,b,c,d,function (error,result)
+mycont.Setbooks(a,b,c,d,function (error,result)
 	{
             if (!error) 
 	{
@@ -322,7 +314,7 @@ function ss()
 {
 var a1=document.getElementById("j1").value;
 var b1=document.getElementById("j2").value;
-var p2=mycont.setstudentids(a1,b1,function (error,result)
+mycont.setstudentids(a1,b1,function (error,result)
 	{
             if (!error) 
 	{
