@@ -48,7 +48,7 @@ contract Librarybook
         bookids.push(ISBnumber);
         
     }
-    function Getbooks(uint sid,uint isbn,uint gettime) public onlybyadmin
+    function Getbooks(uint sid,uint isbn) public onlybyadmin
     { 
     
         require(!studentdetail[sid].check);
@@ -56,9 +56,9 @@ contract Librarybook
         studentdetail[sid].bname=bookdetail[isbn].bookname;
         studentdetail[sid].sbooks++;
         studentdetail[sid].check=true;
-        timefor[isbn][sid].book_gettime=gettime;
+        timefor[isbn][sid].book_gettime=now;
     }
-    function Returnbooks(uint sid,uint isbn,uint book_returntime) public payable onlybyadmin
+    function Returnbooks(uint sid,uint isbn) public onlybyadmin
     {
        
         if(studentdetail[sid].check)
@@ -67,7 +67,7 @@ contract Librarybook
             studentdetail[sid].sbooks--;
             delete studentdetail[sid].bname;
             studentdetail[sid].check=false;
-            timefor[isbn][sid].book_returntime=book_returntime;
+            timefor[isbn][sid].book_returntime=now;
         } 
     }
     function Fineamount(uint isbn,uint sid) public view returns(uint)
