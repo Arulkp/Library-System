@@ -39,13 +39,11 @@ p {
 <P>  Entry For GetBooks</p>
 <input id="m1" type="text" placeholder="StudentId"/>
 <input id="m2" type="text" placeholder="BookID"/>
-<input id="m3" type="number" placeholder="Gettime"/>
 <input type="button" onclick="gbk()" value="GetBook"><h1 id="r7"></h1><br>
 <p>Entry For ReturnBooks</p>
 
 <input id="n1" type="text" placeholder="studentId"/>
 <input id="n2" type="text" placeholder="BookId"/>
-<input id="n3" type="number" placeholder="ReturnTime"/>
 <input type="button" onclick="rbh()" value="ReturnBook"><h1 id="r8"></h1><br>
 <p>Fine Amount For Penalty</p>
 <input id="z1" type="text" placeholder="studentId"/>
@@ -372,8 +370,7 @@ function gbk()
 alert("Done!....");
 var a2=document.getElementById("m1").value;
 var b2=document.getElementById("m2").value;
-var c2=document.getElementById("m3").value;
-mycont.Getbooks(a2,b2,c2,function (error,result){
+mycont.Getbooks(a2,b2,function (error,result){
             if (!error) 
 	{
               
@@ -391,8 +388,7 @@ function rbh()
 alert("Done!....");
 var a3=document.getElementById("n1").value;
 var b3=document.getElementById("n2").value;
-var c3=document.getElementById("n3").value;
-mycont.Returnbooks(a3,b3,c3,function (error,result){
+mycont.Returnbooks(a3,b3,function (error,result){
             if (!error) 
 	{
              
@@ -455,9 +451,13 @@ mycont.Fineamount(a6,b6,function (error,result){
             } else {
              
               console.error(error);
-	    }
+}
 });
 }
 </script>
+
+
+
+
 </html>
 
