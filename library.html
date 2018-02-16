@@ -1,0 +1,467 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <script src="web3.min.js"></script>
+</head>
+<body>
+<form style="background-color:#E6E6FA">
+<center>
+<style>
+p {
+    font-family: verdana;
+    font-size: 20px;
+    color:#000000;
+}
+</style>
+
+<h1 style="color:green">Library System</h1>
+<p>Fill the Bookdetails</p>
+<input id="i1" type="text" placeholder="BookID"/>
+<input id="i2" type="text" placeholder="BookName"/>
+<input id="i3" type="text" placeholder="Author Name"/>
+<input id="i4" type="text" placeholder="Available"/>
+<input type="button" onclick="sb()" value="SetBooks"><h1 id="r1"></h1><br>
+<p>Fill the Student details</p>
+<input id="j1" type="text" placeholder="StudentID"/>
+<input id="j2" type="text" placeholder="StudentName"/>
+<input type="button" onclick="ss()" value="SetStudentsId"><h1 id="r2"></h1><br>
+
+<button onclick="ts()" value="totalist">StudentList</button><h1 id="r3"></h1><br>
+
+<button onclick="tb()" value="totalbook">BookList</button><h1 id="r4"></h1><br>
+<p>Student Details</p>
+<input id="k1" type="text" placeholder="StudentId"/>
+<input type="button" onclick="sd()" value="StudentDetails"><h1 id="r5"></h1><br>
+<p>Book Details</p>
+<input id="k2" type="text" placeholder="BookID"/>
+<input type="button" onclick="bt()"value="BookDetails"><h1 id="r6"></h1><br>
+<P>  Entry For GetBooks</p>
+<input id="m1" type="text" placeholder="StudentId"/>
+<input id="m2" type="text" placeholder="BookID"/>
+<input id="m3" type="number" placeholder="Gettime"/>
+<input type="button" onclick="gbk()" value="GetBook"><h1 id="r7"></h1><br>
+<p>Entry For ReturnBooks</p>
+
+<input id="n1" type="text" placeholder="studentId"/>
+<input id="n2" type="text" placeholder="BookId"/>
+<input id="n3" type="number" placeholder="ReturnTime"/>
+<input type="button" onclick="rbh()" value="ReturnBook"><h1 id="r8"></h1><br>
+<p>Fine Amount For Penalty</p>
+<input id="z1" type="text" placeholder="studentId"/>
+<input id="z2" type="text" placeholder="BookId"/>
+<input type="button" onclick="plt()" value="Fineamount"><h1 id="r9"></h1><br>
+</center>
+</form>
+</body>
+<script>
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+        var lib= web3.eth.contract([
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "studentdetail",
+        "outputs": [
+          {
+            "name": "sname",
+            "type": "string"
+          },
+          {
+            "name": "bname",
+            "type": "string"
+          },
+          {
+            "name": "sbooks",
+            "type": "uint256"
+          },
+          {
+            "name": "fineamount",
+            "type": "uint256"
+          },
+          {
+            "name": "check",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "bookdetail",
+        "outputs": [
+          {
+            "name": "bookname",
+            "type": "string"
+          },
+          {
+            "name": "bookAUname",
+            "type": "string"
+          },
+          {
+            "name": "available",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "StudentList",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256[]"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "isbn",
+            "type": "uint256"
+          },
+          {
+            "name": "sid",
+            "type": "uint256"
+          }
+        ],
+        "name": "Fineamount",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "BookList",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256[]"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "sid",
+            "type": "uint256"
+          },
+          {
+            "name": "isbn",
+            "type": "uint256"
+          },
+          {
+            "name": "gettime",
+            "type": "uint256"
+          }
+        ],
+        "name": "Getbooks",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "sid",
+            "type": "uint256"
+          },
+          {
+            "name": "isbn",
+            "type": "uint256"
+          },
+          {
+            "name": "book_returntime",
+            "type": "uint256"
+          }
+        ],
+        "name": "Returnbooks",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "ISBnumber",
+            "type": "uint256"
+          },
+          {
+            "name": "_bname",
+            "type": "string"
+          },
+          {
+            "name": "_baname",
+            "type": "string"
+          },
+          {
+            "name": "_avail",
+            "type": "uint256"
+          }
+        ],
+        "name": "Setbooks",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "sid",
+            "type": "uint256"
+          },
+          {
+            "name": "sn",
+            "type": "string"
+          }
+        ],
+        "name": "setstudentids",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      }
+    ]);
+	var mycont=lib.at('0xB399Ce9523C7D15304bA5f4728007eb802aD78f2');
+if(!web3.isConnected()) {
+  
+        console.log("Ok");
+        
+
+      } else {
+
+        console.log("no");
+      }
+
+      web3.version.getNetwork((err, netId) => {
+            switch (netId) {
+              case "1":
+                console.log('This is mainnet')
+                break
+              case "2":
+                console.log('This is the deprecated Morden test network.')
+                break
+              case "3":
+                console.log('This is the ropsten test network.')
+                break
+              case "4":
+                console.log('This is the Rinkeby test network.')
+                break
+              case "42":
+                console.log('This is the Kovan test network.')
+                break
+              default:
+                console.log('This is an unknown network.')
+            }
+        })
+
+
+function sb()
+{
+
+var a=document.getElementById("i1").value;
+var b=document.getElementById("i2").value;
+var c=document.getElementById("i3").value;
+var d=document.getElementById("i4").value;
+var p1=mycont.Setbooks(a,b,c,d,function (error,result)
+	{
+            if (!error) 
+	{
+              console.log(result);
+                             
+        }   else 
+	{
+              console.error(error);
+	}
+        });
+	
+alert("Done!.....");
+}
+function ss()
+{
+var a1=document.getElementById("j1").value;
+var b1=document.getElementById("j2").value;
+var p2=mycont.setstudentids(a1,b1,function (error,result)
+	{
+            if (!error) 
+	{
+              console.log(result);
+                             
+        } else 
+	{
+              console.error(error);
+	}
+	});
+alert("done!...");
+}
+function ts()
+{
+mycont.StudentList(function (error,result)
+	{
+            if (!error) 
+	{
+              alert(result);
+                             
+        } else 
+	{
+              console.error(error);
+}
+	});
+	
+
+}
+function tb()
+{
+mycont.BookList (function (error,result)
+	{
+            if (!error) 
+	{
+              alert(result);
+                             
+        } else 
+	{
+              console.error(error);
+	}
+	});
+}
+function gbk()
+{
+alert("Done!....");
+var a2=document.getElementById("m1").value;
+var b2=document.getElementById("m2").value;
+var c2=document.getElementById("m3").value;
+mycont.Getbooks(a2,b2,c2,function (error,result){
+            if (!error) 
+	{
+              
+              alert(result);
+                             
+	} else 
+	{
+              
+              console.error(error);
+	}
+	});
+}
+function rbh()
+{
+alert("Done!....");
+var a3=document.getElementById("n1").value;
+var b3=document.getElementById("n2").value;
+var c3=document.getElementById("n3").value;
+mycont.Returnbooks(a3,b3,c3,function (error,result){
+            if (!error) 
+	{
+             
+              console.log(result);
+                             
+            } else 
+	{
+             
+              console.error(error);
+
+}
+});
+}
+function sd()
+{ 
+
+var a4=document.getElementById("k1").value;
+mycont.studentdetail(a4,function (error,result){
+            if (!error) 
+	{
+             
+              alert(result);
+                             
+            } else 
+	{
+             
+              console.error(error);
+
+}
+});
+
+}
+function bt()
+
+{
+var a5=document.getElementById("k2").value;
+mycont.bookdetail(a5,function (error,result){
+            if (!error) 
+	{
+             
+              alert(result);
+                             
+            } else 
+	{
+             
+              console.error(error);
+
+}
+});
+}
+function plt()
+{
+var a6=document.getElementById("z1").value;
+var b6=document.getElementById("z2").value;
+mycont.Fineamount(a6,b6,function (error,result){
+            if (!error) {
+             
+              alert(result);
+                             
+            } else {
+             
+              console.error(error);
+}
+});
+}
+</script>
+
+
+
+
+</html>
+
