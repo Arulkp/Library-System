@@ -1,0 +1,72 @@
+Wallet as Bank
+
+Ethereum wallets can act as identity and also can store money. These unique features enable you to build interesting applications on top of the Ethereum blockchain. In this project, you will build a bank on your wallet. Below are more project details:
+
+1. Any one with an Ethereum account (contract) should be able to register themselves as a bank.
+2. The bank should be able to lend Ether to another account/user in return for a collateral.
+3. The borrower should make regular payments to the lender
+4. Any user should be able to invest their money in the bank. The bank should offer the following investment options
+a. Fixed deposit - 10% per annum. If you withdraw early, you pay 1% penalty
+b. Insurance - Accept tokens and provide insurance. Assign a risk profile to each user and based on that the premium should differ. The bank should lock up some Ether which can be paid out in case of claims. The bank should lock up 25% of the total amount it insures.  http://www.helpinsure.com/auto/youngexplain.html
+c. Implement a mutual fund company that can accept Ether and issue mutual fund in return. The lender should be able to invest money in the mutual fund. The mutual fund company should issue dividends to the lender. Use https://github.com/WandXDapp/PortfolioProtocol for building the portfolio
+
+
+Question: How can collateral be implemented?
+Abhinav: Basically if I want Abhi wants to lend Mahesh 20ETH, Mahesh must keep 20ETH  worth of some token as an escrow, so that if Mahesh does not pay back the 20ETH to Abhi, Abhi gets to keep the 20ETH worth of ERC20 Tokens.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Project Phases
+A phase is considered complete only if I can checkout your code in github from master branch and am able to test the functionality listed in that phase.
+
+If something in the description below is not clear, make an assumption and implement it without waiting till next day for clarification. 
+
+Phase 1
+1. I should be able to npm install, truffle migrate and execute npm run dev and see your home page with your project name
+2. When your webpage loads, if web3 object is not found, show an alert saying install Metmask or use web3js supported browser
+
+Phase 2
+1. A user should be able to register as bank by depositing Ether in to the smart contract
+2. Frontend should show a textbox for user to enter the amount of Ether they want to stake and hit submit. 
+3. Frontend should list all the ether account addresses who have registered and show the Ether amount they have available in the contract
+
+Phase 3
+1. Any user should be able to borrow money from one of the registered banks/account. Do not implement the collateral feature right now. We will implement later. When they borrow money, the money should be transferred from smart contract to user’s wallet
+2. Implement the frontend so user can borrow money from the browser
+3. The interest rate should be set to 10% and life of the loan is 12 months
+4. Frontend should show how much money I have borrowed
+
+Phase 4
+1. Implement the frontend so I can see my loan details as borrower (how much loan I have taken and how much is outstanding) and a button to pay my installment
+2. Implement the functionality in the smart contract where user can pay monthly installments which is principal + interest
+
+Phase 5
+1. Implement the functionality in the smart contract where user can deposit money with a bank/user. When they deposit, Ether should be transferred from user wallet to bank smart contract
+2. Implement the frontend where me as a user can deposit the amount.
+3. Start with a fixed interest rate of 7% and term of the deposit it 1 year
+4. The frontend should show how much I have deposited
+
+Phase 6
+1. Implement the functionality where smart contract sends interest payment to the user who has deposited the money.
+2. In the frontend, create a button which the smart contract owner can click to dispatch interest payment to the users
+
+Phase 7
+1. Create an ERC20 token which will be used as collateral by the borrower
+2. Set the price of each token to 0.01 Ether
+3. From truffle console, send some tokens to a test user (who will be the borrower)
+
+Phase 8
+1. Update your smart contract so borrower sends tokens and in return they receive loan amount
+2. Implement the frontend to support this functionality
+
+
